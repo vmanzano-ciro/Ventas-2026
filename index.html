@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard Ventas 2026</title>
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #ffffff;
+    --bg2: #f5f5f3;
+    --bg3: #ededea;
+    --text: #1a1a18;
+    --text2: #6b6b67;
+    --text3: #9b9b97;
+    --border: rgba(0,0,0,0.10);
+    --border2: rgba(0,0,0,0.18);
+    --radius: 10px;
+    --radius-lg: 14px;
+    --shadow: 0 1px 4px rgba(0,0,0,0.07), 0 0 0 0.5px rgba(0,0,0,0.08);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1c1c1a;
+      --bg2: #252523;
+      --bg3: #2e2e2b;
+      --text: #f0efea;
+      --text2: #a0a09a;
+      --text3: #6e6e68;
+      --border: rgba(255,255,255,0.09);
+      --border2: rgba(255,255,255,0.16);
+      --shadow: 0 1px 4px rgba(0,0,0,0.35), 0 0 0 0.5px rgba(255,255,255,0.06);
+    }
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    background: var(--bg2);
+    color: var(--text);
+    font-size: 14px;
+    line-height: 1.5;
+    min-height: 100vh;
+  }
+
+  /* TOP BAR */
+  .topbar {
+    background: var(--bg);
+    border-bottom: 0.5px solid var(--border2);
+    padding: 14px 24px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .topbar-left { display: flex; align-items: center; gap: 14px; }
+  .logo-dot { width: 28px; height: 28px; border-radius: 8px; background: linear-gradient(135deg, #185FA5, #1D9E75); display: flex; align-items: center; justify-content: center; }
+  .logo-dot svg { width: 16px; height: 16px; fill: #fff; }
+  .topbar-title { font-size: 15px; font-weight: 600; color: var(--text); }
+  .topbar-sub { font-size: 12px; color: var(--text2); margin-top: 1px; }
+  .badge-live { font-size: 11px; padding: 3px 10px; border-radius: 20px; background: #E1F5EE; color: #0F6E56; font-weight: 500; border: 0.5px solid #9FE1CB; }
+  @media (prefers-color-scheme: dark) {
+    .badge-live { background: #085041; color: #5DCAA5; border-color: #0F6E56; }
+  }
+
+  /* NAV TABS */
+  .nav { background: var(--bg); border-bottom: 0.5px solid var(--border); padding: 0 20px; display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav-btn {
+    font-size: 13px; font-weight: 500; padding: 12px 16px; border: none; background: transparent;
+    color: var(--text2); cursor: pointer; border-bottom: 2px solid transparent;
+    white-space: nowrap; transition: all 0.15s; display: flex; align-items: center; gap: 6px;
+  }
+  .nav-btn:hover { color: var(--text); }
+  .nav-btn.active { color: #185FA5; border-bottom-color: #185FA5; }
+  .nav-icon { font-size: 14px; }
+
+  /* MAIN CONTENT */
+  .main { max-width: 1200px; margin: 0 auto; padding: 20px 16px 40px; }
+
+  /* SECTION */
+  .section { display: none; }
+  .section.active { display: block; }
+
+  /* KPI GRID */
+  .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; margin-bottom: 18px; }
+  .kpi {
+    background: var(--bg);
+    border-radius: var(--radius);
+    padding: 14px 16px;
+    box-shadow: var(--shadow);
+  }
+  .kpi-label { font-size: 10px; color: var(--text2); text-transform: uppercase; letter-spacing: 0.06em; font-weight: 500; margin-bottom: 6px; }
+  .kpi-value { font-size: 24px; font-weight: 700; color: var(--text); letter-spacing: -0.02em; line-height: 1; }
+  .kpi-sub { font-size: 11px; color: var(--text2); margin-top: 5px; }
+  .pos { color: #0F6E56 !important; }
+  .neg { color: #993C1D !important; }
+
+  /* CHARTS GRID */
+  .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px; margin-bottom: 14px; }
+  .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-bottom: 14px; }
+
+  /* CARD */
+  .card {
+    background: var(--bg);
+    border-radius: var(--radius-lg);
+    padding: 18px 20px;
+    box-shadow: var(--shadow);
+  }
+  .card-title { font-size: 12px; font-weight: 500; color: var(--text2); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 14px; }
+
+  /* LEGEND */
+  .legend { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 12px; }
+  .legend-item { display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--text2); }
+  .leg-box { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
+
+  /* BAR ROWS */
+  .bar-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+  .bar-label { font-size: 11px; color: var(--text2); width: 140px; flex-shrink: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .bar-track { flex: 1; height: 9px; background: var(--bg3); border-radius: 5px; overflow: hidden; min-width: 0; }
+  .bar-fill { height: 100%; border-radius: 5px; transition: width 0.7s cubic-bezier(.4,0,.2,1); }
+  .bar-val { font-size: 11px; color: var(--text2); width: 64px; text-align: right; flex-shrink: 0; font-variant-numeric: tabular-nums; }
+
+  /* TABLE */
+  .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  table { width: 100%; border-collapse: collapse; min-width: 480px; }
+  thead th {
+    font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em;
+    color: var(--text2); padding: 8px 10px; text-align: left;
+    border-bottom: 0.5px solid var(--border2); white-space: nowrap;
+  }
+  tbody td { padding: 9px 10px; border-bottom: 0.5px solid var(--border); font-size: 12px; color: var(--text); }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:hover { background: var(--bg2); }
+  tfoot td { padding: 9px 10px; font-size: 12px; font-weight: 600; border-top: 0.5px solid var(--border2); color: var(--text); }
+
+  /* CHIPS */
+  .chip { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 10px; font-weight: 500; white-space: nowrap; }
+  .chip-ins { background: #E6F1FB; color: #185FA5; }
+  .chip-lab { background: #FAEEDA; color: #854F0B; }
+  .chip-par { background: #EAF3DE; color: #3B6D11; }
+  .chip-res { background: #EEEDFE; color: #534AB7; }
+  @media (prefers-color-scheme: dark) {
+    .chip-ins { background: #0C447C; color: #85B7EB; }
+    .chip-lab { background: #633806; color: #FAC775; }
+    .chip-par { background: #27500A; color: #C0DD97; }
+    .chip-res { background: #3C3489; color: #AFA9EC; }
+  }
+
+  /* RANK NUMBER */
+  .rank { display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; border-radius: 50%; background: var(--bg3); font-size: 10px; font-weight: 600; color: var(--text2); }
+
+  /* INSIGHT BOX */
+  .insight { background: #E6F1FB; border-left: 3px solid #185FA5; border-radius: 0 var(--radius) var(--radius) 0; padding: 12px 14px; margin-bottom: 14px; font-size: 12px; color: #0C447C; line-height: 1.6; }
+  @media (prefers-color-scheme: dark) { .insight { background: #042C53; color: #85B7EB; border-color: #378ADD; } }
+  .insight strong { font-weight: 600; }
+
+  /* DONUT CENTER */
+  .donut-wrap { position: relative; }
+  .donut-center { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); text-align: center; pointer-events: none; }
+  .donut-total { font-size: 20px; font-weight: 700; color: var(--text); letter-spacing: -0.02em; }
+  .donut-lbl { font-size: 10px; color: var(--text2); }
+
+  /* MOBILE */
+  @media (max-width: 600px) {
+    .topbar { padding: 10px 14px; }
+    .main { padding: 14px 10px 40px; }
+    .kpi-value { font-size: 20px; }
+    .bar-label { width: 110px; }
+    .card { padding: 14px 14px; }
+  }
+
+  /* FOOTER */
+  .footer { text-align: center; font-size: 11px; color: var(--text3); padding: 20px; }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-left">
+    <div class="logo-dot">
+      <svg viewBox="0 0 24 24"><path d="M3 3h7v7H3zm11 0h7v7h-7zM3 14h7v7H3zm14 3a4 4 0 100-8 4 4 0 000 8z"/></svg>
+    </div>
+    <div>
+      <div class="topbar-title">Dashboard de Ventas 2026</div>
+      <div class="topbar-sub">Enero – Febrero · Acumulado</div>
+    </div>
+  </div>
+  <span class="badge-live">Feb 2026</span>
+</div>
+
+<nav class="nav">
+  <button class="nav-btn active" onclick="setView('resumen')"><span class="nav-icon">◈</span> Resumen</button>
+  <button class="nav-btn" onclick="setView('mensual')"><span class="nav-icon">⟁</span> Por mes</button>
+  <button class="nav-btn" onclick="setView('clientes')"><span class="nav-icon">◎</span> Top clientes</button>
+  <button class="nav-btn" onclick="setView('detalle')"><span class="nav-icon">⊞</span> Por línea</button>
+</nav>
+
+<div class="main">
+
+  <!-- RESUMEN -->
+  <div class="section active" id="s-resumen">
+    <div class="kpi-grid">
+      <div class="kpi">
+        <div class="kpi-label">Venta acumulada</div>
+        <div class="kpi-value">$982M</div>
+        <div class="kpi-sub">Enero + Febrero 2026</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Proyección acum.</div>
+        <div class="kpi-value">$877M</div>
+        <div class="kpi-sub pos">▲ Superada en 12%</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Venta enero</div>
+        <div class="kpi-value">$500M</div>
+        <div class="kpi-sub pos">▲ +$45.2M vs proy.</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Venta febrero</div>
+        <div class="kpi-value">$483M</div>
+        <div class="kpi-sub pos">▲ +$59.8M vs proy.</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Áreas activas</div>
+        <div class="kpi-value">4</div>
+        <div class="kpi-sub">Servicios</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Clientes facturados</div>
+        <div class="kpi-value">26</div>
+        <div class="kpi-sub">Ene + Feb</div>
+      </div>
+    </div>
+
+    <div class="insight">
+      <strong>Resumen ejecutivo:</strong> La operación 2026 arranca sobre proyección en ambos meses. Residencia e Instituciones son las áreas con mayor superávit acumulado. Laboratorio muestra aceleración en febrero (+$10.6M vs enero). El top 3 de clientes concentra el 44% de la venta total.
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">Composición por área · Acumulado</div>
+        <div class="donut-wrap" style="position:relative; height:210px;">
+          <canvas id="cDonut"></canvas>
+          <div class="donut-center">
+            <div class="donut-total">$982M</div>
+            <div class="donut-lbl">Total vendido</div>
+          </div>
+        </div>
+        <div class="legend">
+          <div class="legend-item"><span class="leg-box" style="background:#185FA5"></span>Instituciones 38%</div>
+          <div class="legend-item"><span class="leg-box" style="background:#854F0B"></span>Laboratorio 24%</div>
+          <div class="legend-item"><span class="leg-box" style="background:#534AB7"></span>Residencia 31%</div>
+          <div class="legend-item"><span class="leg-box" style="background:#3B6D11"></span>Particulares 6%</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Venta vs proyección por área · Acumulado</div>
+        <div style="position:relative; height:210px;"><canvas id="cComp"></canvas></div>
+        <div class="legend">
+          <div class="legend-item"><span class="leg-box" style="background:#B5D4F4"></span>Proyectado</div>
+          <div class="legend-item"><span class="leg-box" style="background:#1D9E75"></span>Vendido</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Evolución mensual por área de servicio · CLP millones</div>
+      <div style="position:relative; height:200px;"><canvas id="cLine"></canvas></div>
+      <div class="legend">
+        <div class="legend-item"><span class="leg-box" style="background:#185FA5"></span>Instituciones</div>
+        <div class="legend-item"><span class="leg-box" style="background:#854F0B"></span>Laboratorio</div>
+        <div class="legend-item"><span class="leg-box" style="background:#534AB7"></span>Residencia</div>
+        <div class="legend-item"><span class="leg-box" style="background:#3B6D11"></span>Particulares</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MENSUAL -->
+  <div class="section" id="s-mensual">
+    <div class="kpi-grid">
+      <div class="kpi"><div class="kpi-label">Venta enero</div><div class="kpi-value">$499.9M</div><div class="kpi-sub pos">▲ +$45.2M vs proy.</div></div>
+      <div class="kpi"><div class="kpi-label">Proyección enero</div><div class="kpi-value">$454.7M</div><div class="kpi-sub">Línea base</div></div>
+      <div class="kpi"><div class="kpi-label">Venta febrero</div><div class="kpi-value">$482.5M</div><div class="kpi-sub pos">▲ +$59.8M vs proy.</div></div>
+      <div class="kpi"><div class="kpi-label">Proyección febrero</div><div class="kpi-value">$422.7M</div><div class="kpi-sub">Línea base</div></div>
+      <div class="kpi"><div class="kpi-label">Var. feb. vs ene.</div><div class="kpi-value">−$17M</div><div class="kpi-sub neg">▼ −3.5%</div></div>
+    </div>
+
+    <div class="card" style="margin-bottom:14px;">
+      <div class="card-title">Venta por área · Enero vs Febrero (CLP millones)</div>
+      <div style="position:relative; height:240px;"><canvas id="cMensual"></canvas></div>
+      <div class="legend">
+        <div class="legend-item"><span class="leg-box" style="background:#185FA5"></span>Enero</div>
+        <div class="legend-item"><span class="leg-box" style="background:#1D9E75"></span>Febrero</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Desglose mensual por área</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Área</th><th>Venta Enero</th><th>Proy. Enero</th><th>Dif. Ene.</th><th>Venta Feb.</th><th>Proy. Feb.</th><th>Dif. Feb.</th><th>Acumulado</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><span class="chip chip-ins">Instituciones</span></td>
+              <td>$197.7M</td><td>$187.8M</td><td class="pos">+$9.9M</td>
+              <td>$177.3M</td><td>$172.8M</td><td class="pos">+$4.5M</td>
+              <td><strong>$374.9M</strong></td>
+            </tr>
+            <tr>
+              <td><span class="chip chip-lab">Laboratorio</span></td>
+              <td>$113.8M</td><td>$102.9M</td><td class="pos">+$10.9M</td>
+              <td>$124.3M</td><td>$90.9M</td><td class="pos">+$33.4M</td>
+              <td><strong>$238.1M</strong></td>
+            </tr>
+            <tr>
+              <td><span class="chip chip-par">Particulares</span></td>
+              <td>$33.0M</td><td>$34.5M</td><td class="neg">−$1.5M</td>
+              <td>$28.5M</td><td>$29.5M</td><td class="neg">−$1.0M</td>
+              <td><strong>$61.6M</strong></td>
+            </tr>
+            <tr>
+              <td><span class="chip chip-res">Residencia</span></td>
+              <td>$155.5M</td><td>$129.5M</td><td class="pos">+$26.0M</td>
+              <td>$152.4M</td><td>$129.5M</td><td class="pos">+$22.9M</td>
+              <td><strong>$307.8M</strong></td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td>Total</td>
+              <td>$499.9M</td><td>$454.7M</td><td class="pos">+$45.3M</td>
+              <td>$482.5M</td><td>$422.7M</td><td class="pos">+$59.8M</td>
+              <td><strong>$982.4M</strong></td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- CLIENTES -->
+  <div class="section" id="s-clientes">
+    <div class="kpi-grid">
+      <div class="kpi"><div class="kpi-label">Top cliente</div><div class="kpi-value" style="font-size:16px; font-weight:700;">MUTUAL Stgo.</div><div class="kpi-sub">$189.8M acumulado</div></div>
+      <div class="kpi"><div class="kpi-label">Concentración top 3</div><div class="kpi-value">44%</div><div class="kpi-sub">Del total vendido</div></div>
+      <div class="kpi"><div class="kpi-label">Concentración top 5</div><div class="kpi-value">64%</div><div class="kpi-sub">Del total vendido</div></div>
+      <div class="kpi"><div class="kpi-label">Concentración top 10</div><div class="kpi-value">87%</div><div class="kpi-sub">Del total vendido</div></div>
+    </div>
+
+    <div class="card" style="margin-bottom:14px;">
+      <div class="card-title">Top 10 clientes · Venta acumulada (CLP millones)</div>
+      <div id="barras-cli"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Detalle top clientes</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>#</th><th>Cliente</th><th>Área</th><th>Venta acum.</th><th>% total</th></tr></thead>
+          <tbody>
+            <tr><td><span class="rank">1</span></td><td>MUTUAL (Stgo. y Rancagua)</td><td><span class="chip chip-ins">Instituciones</span></td><td>$189.8M</td><td>19.3%</td></tr>
+            <tr><td><span class="rank">2</span></td><td>Hospital Sótero del Río</td><td><span class="chip chip-res">Residencia</span></td><td>$129.5M</td><td>13.2%</td></tr>
+            <tr><td><span class="rank">3</span></td><td>ESACHS</td><td><span class="chip chip-ins">Instituciones</span></td><td>$118.5M</td><td>12.1%</td></tr>
+            <tr><td><span class="rank">4</span></td><td>SANOFI</td><td><span class="chip chip-lab">Laboratorio</span></td><td>$99.1M</td><td>10.1%</td></tr>
+            <tr><td><span class="rank">5</span></td><td>Hospital San Juan de Dios</td><td><span class="chip chip-res">Residencia</span></td><td>$95.0M</td><td>9.7%</td></tr>
+            <tr><td><span class="rank">6</span></td><td>PFIZER DE CHILE</td><td><span class="chip chip-lab">Laboratorio</span></td><td>$61.5M</td><td>6.3%</td></tr>
+            <tr><td><span class="rank">7</span></td><td>Viña MUTUAL</td><td><span class="chip chip-ins">Instituciones</span></td><td>$56.5M</td><td>5.8%</td></tr>
+            <tr><td><span class="rank">8</span></td><td>Servicios (Particulares)</td><td><span class="chip chip-par">Particulares</span></td><td>$54.0M</td><td>5.5%</td></tr>
+            <tr><td><span class="rank">9</span></td><td>Residencia (Particulares)</td><td><span class="chip chip-res">Residencia</span></td><td>$52.4M</td><td>5.3%</td></tr>
+            <tr><td><span class="rank">10</span></td><td>PTC</td><td><span class="chip chip-lab">Laboratorio</span></td><td>$34.4M</td><td>3.5%</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- DETALLE LÍNEA -->
+  <div class="section" id="s-detalle">
+    <div class="kpi-grid">
+      <div class="kpi"><div class="kpi-label">Mejor línea</div><div class="kpi-value" style="font-size:15px; font-weight:700;">Inst. HC Stgo.</div><div class="kpi-sub">$308.4M acumulado</div></div>
+      <div class="kpi"><div class="kpi-label">Líneas activas</div><div class="kpi-value">8</div><div class="kpi-sub">Líneas de negocio</div></div>
+      <div class="kpi"><div class="kpi-label">Residencia vs proy.</div><div class="kpi-value" style="color:#0F6E56">+$49M</div><div class="kpi-sub pos">▲ Supera proyección</div></div>
+      <div class="kpi"><div class="kpi-label">Particulares vs proy.</div><div class="kpi-value" style="color:#993C1D">−$2.4M</div><div class="kpi-sub neg">▼ Bajo proyección</div></div>
+    </div>
+
+    <div class="card" style="margin-bottom:14px;">
+      <div class="card-title">Venta acumulada por línea de negocio · CLP millones</div>
+      <div id="barras-linea"></div>
+    </div>
+
+    <div class="card" style="margin-bottom:14px;">
+      <div class="card-title">Proyectado vs vendido vs facturado por área · Acumulado</div>
+      <div style="position:relative; height:230px;"><canvas id="cDetalle"></canvas></div>
+      <div class="legend">
+        <div class="legend-item"><span class="leg-box" style="background:#B5D4F4"></span>Proyectado</div>
+        <div class="legend-item"><span class="leg-box" style="background:#1D9E75"></span>Vendido</div>
+        <div class="legend-item"><span class="leg-box" style="background:#D85A30"></span>Facturado</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Detalle por línea de negocio</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Línea</th><th>Área</th><th>Venta acum.</th><th>% del total</th></tr></thead>
+          <tbody>
+            <tr><td>Instituciones HC Stgo.</td><td><span class="chip chip-ins">Instituciones</span></td><td>$308.4M</td><td>31.4%</td></tr>
+            <tr><td>Institucional Res.</td><td><span class="chip chip-res">Residencia</span></td><td>$255.4M</td><td>26.0%</td></tr>
+            <tr><td>Laboratorio Stgo.</td><td><span class="chip chip-lab">Laboratorio</span></td><td>$238.1M</td><td>24.2%</td></tr>
+            <tr><td>Instituciones HC Viña</td><td><span class="chip chip-ins">Instituciones</span></td><td>$56.5M</td><td>5.8%</td></tr>
+            <tr><td>Particulares Stgo.</td><td><span class="chip chip-par">Particulares</span></td><td>$54.0M</td><td>5.5%</td></tr>
+            <tr><td>Particular Res.</td><td><span class="chip chip-res">Residencia</span></td><td>$52.4M</td><td>5.3%</td></tr>
+            <tr><td>Instituciones Stgo.</td><td><span class="chip chip-ins">Instituciones</span></td><td>$10.1M</td><td>1.0%</td></tr>
+            <tr><td>Particulares Viña</td><td><span class="chip chip-par">Particulares</span></td><td>$7.6M</td><td>0.8%</td></tr>
+          </tbody>
+          <tfoot>
+            <tr><td colspan="2">Total</td><td>$982.4M</td><td>100%</td></tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">Dashboard Ventas 2026 · Generado abril 2026 · Datos: Base_Ventas_2026.xlsx</div>
+
+<script>
+const VIEWS = ['resumen','mensual','clientes','detalle'];
+let chartsBuilt = {};
+
+function setView(v) {
+  VIEWS.forEach(x => {
+    document.getElementById('s-'+x).classList.toggle('active', x===v);
+  });
+  document.querySelectorAll('.nav-btn').forEach((b,i) => b.classList.toggle('active', VIEWS[i]===v));
+  if (!chartsBuilt[v]) { chartsBuilt[v] = true; buildCharts(v); }
+}
+
+function fmt(v) { return '$' + (v/1e6).toFixed(1) + 'M'; }
+
+const ticksY = { callback: v => '$' + (v/1e6).toFixed(0) + 'M', font: { size: 10 }, color: '#888' };
+const gridColor = 'rgba(128,128,128,0.12)';
+const noLegend = { legend: { display: false } };
+const tooltipFmt = (label) => ({ callbacks: { label: ctx => label || ctx.dataset.label + ': ' + fmt(ctx.raw) } });
+
+function buildCharts(v) {
+  if (v === 'resumen') {
+    new Chart(document.getElementById('cDonut'), {
+      type: 'doughnut',
+      data: {
+        labels: ['Instituciones','Laboratorio','Residencia','Particulares'],
+        datasets: [{ data: [374932066, 238098592, 307842761, 61564308],
+          backgroundColor: ['#185FA5','#854F0B','#534AB7','#3B6D11'],
+          borderWidth: 3, borderColor: 'transparent', hoverOffset: 4 }]
+      },
+      options: { responsive: true, maintainAspectRatio: false, cutout: '66%',
+        plugins: { ...noLegend, tooltip: tooltipFmt() } }
+    });
+
+    new Chart(document.getElementById('cComp'), {
+      type: 'bar',
+      data: {
+        labels: ['Instituciones','Laboratorio','Residencia','Particulares'],
+        datasets: [
+          { label: 'Proyectado', data: [360503600,193731600,259000000,64000000], backgroundColor: '#B5D4F4', borderRadius: 4, borderSkipped: false },
+          { label: 'Vendido', data: [374932066,238098592,307842761,61564308], backgroundColor: ['#185FA5','#854F0B','#534AB7','#3B6D11'], borderRadius: 4, borderSkipped: false }
+        ]
+      },
+      options: { responsive: true, maintainAspectRatio: false,
+        plugins: { ...noLegend, tooltip: tooltipFmt() },
+        scales: { x: { grid: { display: false }, ticks: { font: { size: 10 }, color: '#888' } }, y: { grid: { color: gridColor }, ticks: ticksY } } }
+    });
+
+    new Chart(document.getElementById('cLine'), {
+      type: 'line',
+      data: {
+        labels: ['Enero','Febrero'],
+        datasets: [
+          { label: 'Instituciones', data: [197676327,177255739], borderColor: '#185FA5', backgroundColor: '#185FA518', tension: 0.4, pointRadius: 6, pointHoverRadius: 8, fill: false, borderWidth: 2 },
+          { label: 'Laboratorio', data: [113750378,124348214], borderColor: '#854F0B', backgroundColor: '#854F0B18', tension: 0.4, pointRadius: 6, pointHoverRadius: 8, fill: false, borderWidth: 2 },
+          { label: 'Residencia', data: [155483189,152359572], borderColor: '#534AB7', backgroundColor: '#534AB718', tension: 0.4, pointRadius: 6, pointHoverRadius: 8, fill: false, borderWidth: 2 },
+          { label: 'Particulares', data: [33014666,28549642], borderColor: '#3B6D11', backgroundColor: '#3B6D1118', tension: 0.4, pointRadius: 6, pointHoverRadius: 8, fill: false, borderWidth: 2 }
+        ]
+      },
+      options: { responsive: true, maintainAspectRatio: false,
+        plugins: { ...noLegend, tooltip: tooltipFmt() },
+        scales: { x: { grid: { display: false }, ticks: { color: '#888' } }, y: { grid: { color: gridColor }, ticks: ticksY } } }
+    });
+  }
+
+  if (v === 'mensual') {
+    new Chart(document.getElementById('cMensual'), {
+      type: 'bar',
+      data: {
+        labels: ['Instituciones','Laboratorio','Residencia','Particulares'],
+        datasets: [
+          { label: 'Enero', data: [197676327,113750378,155483189,33014666], backgroundColor: '#185FA5', borderRadius: 4 },
+          { label: 'Febrero', data: [177255739,124348214,152359572,28549642], backgroundColor: '#1D9E75', borderRadius: 4 }
+        ]
+      },
+      options: { responsive: true, maintainAspectRatio: false,
+        plugins: { ...noLegend, tooltip: tooltipFmt() },
+        scales: { x: { grid: { display: false }, ticks: { font: { size: 10 }, color: '#888' } }, y: { grid: { color: gridColor }, ticks: ticksY } } }
+    });
+  }
+
+  if (v === 'clientes') {
+    const cliData = [
+      ['MUTUAL (Stgo. y Rancagua)', 189838325, '#185FA5'],
+      ['Hospital Sótero del Río', 129516000, '#534AB7'],
+      ['ESACHS', 118529786, '#185FA5'],
+      ['SANOFI', 99095828, '#854F0B'],
+      ['Hosp. San Juan de Dios', 94953000, '#534AB7'],
+      ['PFIZER DE CHILE', 61485693, '#854F0B'],
+      ['Viña MUTUAL', 56501007, '#185FA5'],
+      ['Servicios (Particulares)', 54003616, '#3B6D11'],
+      ['Residencia (Particulares)', 52393481, '#534AB7'],
+      ['PTC', 34385365, '#854F0B'],
+    ];
+    const max = cliData[0][1];
+    document.getElementById('barras-cli').innerHTML = cliData.map(([n,v,c]) =>
+      `<div class="bar-row">
+        <div class="bar-label" title="${n}">${n}</div>
+        <div class="bar-track"><div class="bar-fill" style="width:${(v/max*100).toFixed(1)}%;background:${c}"></div></div>
+        <div class="bar-val">${fmt(v)}</div>
+      </div>`
+    ).join('');
+  }
+
+  if (v === 'detalle') {
+    const lineaData = [
+      ['Inst. HC Stgo.', 308368111, '#185FA5'],
+      ['Institucional Res.', 255449280, '#534AB7'],
+      ['Laboratorio Stgo.', 238098592, '#854F0B'],
+      ['Inst. HC Viña', 56501007, '#185FA5'],
+      ['Particulares Stgo.', 54003616, '#3B6D11'],
+      ['Particular Res.', 52393481, '#534AB7'],
+      ['Instituciones Stgo.', 10062948, '#185FA5'],
+      ['Particulares Viña', 7560692, '#3B6D11'],
+    ];
+    const max = lineaData[0][1];
+    document.getElementById('barras-linea').innerHTML = lineaData.map(([n,v,c]) =>
+      `<div class="bar-row">
+        <div class="bar-label" title="${n}">${n}</div>
+        <div class="bar-track"><div class="bar-fill" style="width:${(v/max*100).toFixed(1)}%;background:${c}"></div></div>
+        <div class="bar-val">${fmt(v)}</div>
+      </div>`
+    ).join('');
+
+    new Chart(document.getElementById('cDetalle'), {
+      type: 'bar',
+      data: {
+        labels: ['Instituciones','Laboratorio','Residencia','Particulares'],
+        datasets: [
+          { label: 'Proyectado', data: [360503600,193731600,259000000,64000000], backgroundColor: '#B5D4F4', borderRadius: 4 },
+          { label: 'Vendido', data: [374932066,238098592,307842761,61564308], backgroundColor: '#1D9E75', borderRadius: 4 },
+          { label: 'Facturado', data: [512015858,229547498,429323345,61564308], backgroundColor: '#D85A30', borderRadius: 4 }
+        ]
+      },
+      options: { responsive: true, maintainAspectRatio: false,
+        plugins: { ...noLegend, tooltip: tooltipFmt() },
+        scales: { x: { grid: { display: false }, ticks: { font: { size: 10 }, color: '#888' } }, y: { grid: { color: gridColor }, ticks: ticksY } } }
+    });
+  }
+}
+
+// Build initial view
+chartsBuilt['resumen'] = true;
+buildCharts('resumen');
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+</body>
+</html>

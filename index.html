@@ -73,8 +73,8 @@ tfoot td{padding:9px 10px;font-size:12px;font-weight:600;border-top:.5px solid v
   <button class="nb" onclick="sv('mensual')">⟁ Por mes</button>
   <button class="nb" onclick="sv('clientes')">◎ Top clientes</button>
   <button class="nb" onclick="sv('detalle')">⊞ Por línea</button>
-  <button class="nb" onclick="sv('instituciones')"><span style="color:#185FA5">●</span> Instituciones</button>
-  <button class="nb" onclick="sv('laboratorio')"><span style="color:#854F0B">●</span> Laboratorio</button>
+  <button class="nb" onclick="sv('instituciones')"><span style="color:#185FA5">●</span> Home Care B2B</button>
+  <button class="nb" onclick="sv('psp')"><span style="color:#854F0B">●</span> PSP</button>
   <button class="nb" onclick="sv('residencia')"><span style="color:#534AB7">●</span> Residencia</button>
 </nav>
  
@@ -90,7 +90,7 @@ tfoot td{padding:9px 10px;font-size:12px;font-weight:600;border-top:.5px solid v
     <div class="kpi"><div class="kl">Áreas activas</div><div class="kv">4</div><div class="ks">Servicios</div></div>
     <div class="kpi"><div class="kl">Clientes facturados</div><div class="kv">26</div><div class="ks">Ene + Feb</div></div>
   </div>
-  <div class="insight"><strong>Resumen ejecutivo:</strong> La operación 2026 arranca sobre proyección en ambos meses. Residencia e Instituciones son las áreas con mayor superávit acumulado. Laboratorio muestra aceleración en febrero (+$10.6M vs enero). El top 3 de clientes concentra el 44% de la venta total.</div>
+  <div class="insight"><strong>Resumen ejecutivo:</strong> La operación 2026 arranca sobre proyección en ambos meses. Residencia e Instituciones son las áreas con mayor superávit acumulado. PSP muestra aceleración en febrero (+$10.6M vs enero). El top 3 de clientes concentra el 44% de la venta total.</div>
   <div class="g2">
     <div class="card">
       <div class="ct">Composición por área · Acumulado</div>
@@ -99,7 +99,7 @@ tfoot td{padding:9px 10px;font-size:12px;font-weight:600;border-top:.5px solid v
       </div>
       <div class="leg">
         <div class="li"><span class="lb" style="background:#185FA5"></span>Instituciones 38%</div>
-        <div class="li"><span class="lb" style="background:#854F0B"></span>Laboratorio 24%</div>
+        <div class="li"><span class="lb" style="background:#854F0B"></span>PSP 24%</div>
         <div class="li"><span class="lb" style="background:#534AB7"></span>Residencia 31%</div>
         <div class="li"><span class="lb" style="background:#3B6D11"></span>Particulares 6%</div>
       </div>
@@ -115,7 +115,7 @@ tfoot td{padding:9px 10px;font-size:12px;font-weight:600;border-top:.5px solid v
     <div style="position:relative;height:200px"><canvas id="cLine"></canvas></div>
     <div class="leg">
       <div class="li"><span class="lb" style="background:#185FA5"></span>Instituciones</div>
-      <div class="li"><span class="lb" style="background:#854F0B"></span>Laboratorio</div>
+      <div class="li"><span class="lb" style="background:#854F0B"></span>PSP</div>
       <div class="li"><span class="lb" style="background:#534AB7"></span>Residencia</div>
       <div class="li"><span class="lb" style="background:#3B6D11"></span>Particulares</div>
     </div>
@@ -142,7 +142,7 @@ tfoot td{padding:9px 10px;font-size:12px;font-weight:600;border-top:.5px solid v
       <thead><tr><th>Área</th><th>Venta Enero</th><th>Proy. Enero</th><th>Dif. Ene.</th><th>Venta Feb.</th><th>Proy. Feb.</th><th>Dif. Feb.</th><th>Acumulado</th></tr></thead>
       <tbody>
         <tr><td><span class="chip ci">Instituciones</span></td><td>$197.7M</td><td>$187.8M</td><td class="pos">+$9.9M</td><td>$177.3M</td><td>$172.8M</td><td class="pos">+$4.5M</td><td><strong>$374.9M</strong></td></tr>
-        <tr><td><span class="chip cl">Laboratorio</span></td><td>$113.8M</td><td>$102.9M</td><td class="pos">+$10.9M</td><td>$124.3M</td><td>$90.9M</td><td class="pos">+$33.4M</td><td><strong>$238.1M</strong></td></tr>
+        <tr><td><span class="chip cl">PSP</span></td><td>$113.8M</td><td>$102.9M</td><td class="pos">+$10.9M</td><td>$124.3M</td><td>$90.9M</td><td class="pos">+$33.4M</td><td><strong>$238.1M</strong></td></tr>
         <tr><td><span class="chip cp">Particulares</span></td><td>$33.0M</td><td>$34.5M</td><td class="neg">−$1.5M</td><td>$28.5M</td><td>$29.5M</td><td class="neg">−$1.0M</td><td><strong>$61.6M</strong></td></tr>
         <tr><td><span class="chip cr">Residencia</span></td><td>$155.5M</td><td>$129.5M</td><td class="pos">+$26.0M</td><td>$152.4M</td><td>$129.5M</td><td class="pos">+$22.9M</td><td><strong>$307.8M</strong></td></tr>
       </tbody>
@@ -171,13 +171,13 @@ tfoot td{padding:9px 10px;font-size:12px;font-weight:600;border-top:.5px solid v
         <tr><td><span class="rank">1</span></td><td>MUTUAL (Stgo. y Rancagua)</td><td><span class="chip ci">Instituciones</span></td><td>$189.8M</td><td>19.3%</td></tr>
         <tr><td><span class="rank">2</span></td><td>Hospital Sótero del Río</td><td><span class="chip cr">Residencia</span></td><td>$129.5M</td><td>13.2%</td></tr>
         <tr><td><span class="rank">3</span></td><td>ESACHS</td><td><span class="chip ci">Instituciones</span></td><td>$118.5M</td><td>12.1%</td></tr>
-        <tr><td><span class="rank">4</span></td><td>SANOFI</td><td><span class="chip cl">Laboratorio</span></td><td>$99.1M</td><td>10.1%</td></tr>
+        <tr><td><span class="rank">4</span></td><td>SANOFI</td><td><span class="chip cl">PSP</span></td><td>$99.1M</td><td>10.1%</td></tr>
         <tr><td><span class="rank">5</span></td><td>Hospital San Juan de Dios</td><td><span class="chip cr">Residencia</span></td><td>$95.0M</td><td>9.7%</td></tr>
-        <tr><td><span class="rank">6</span></td><td>PFIZER DE CHILE</td><td><span class="chip cl">Laboratorio</span></td><td>$61.5M</td><td>6.3%</td></tr>
+        <tr><td><span class="rank">6</span></td><td>PFIZER DE CHILE</td><td><span class="chip cl">PSP</span></td><td>$61.5M</td><td>6.3%</td></tr>
         <tr><td><span class="rank">7</span></td><td>Viña MUTUAL</td><td><span class="chip ci">Instituciones</span></td><td>$56.5M</td><td>5.8%</td></tr>
         <tr><td><span class="rank">8</span></td><td>Servicios (Particulares)</td><td><span class="chip cp">Particulares</span></td><td>$54.0M</td><td>5.5%</td></tr>
         <tr><td><span class="rank">9</span></td><td>Residencia (Particulares)</td><td><span class="chip cr">Residencia</span></td><td>$52.4M</td><td>5.3%</td></tr>
-        <tr><td><span class="rank">10</span></td><td>PTC</td><td><span class="chip cl">Laboratorio</span></td><td>$34.4M</td><td>3.5%</td></tr>
+        <tr><td><span class="rank">10</span></td><td>PTC</td><td><span class="chip cl">PSP</span></td><td>$34.4M</td><td>3.5%</td></tr>
       </tbody>
     </table></div>
   </div>
@@ -186,7 +186,7 @@ tfoot td{padding:9px 10px;font-size:12px;font-weight:600;border-top:.5px solid v
 <!-- POR LINEA -->
 <div class="sec" id="s-detalle">
   <div class="kgrid">
-    <div class="kpi"><div class="kl">Mejor línea</div><div class="kv" style="font-size:15px">Inst. HC Stgo.</div><div class="ks">$308.4M acumulado</div></div>
+    <div class="kpi"><div class="kl">Mejor línea</div><div class="kv" style="font-size:15px">Home Care B2B</div><div class="ks">$308.4M acumulado</div></div>
     <div class="kpi"><div class="kl">Líneas activas</div><div class="kv">8</div><div class="ks">Líneas de negocio</div></div>
     <div class="kpi"><div class="kl">Residencia vs proy.</div><div class="kv pos">+$49M</div><div class="ks pos">▲ Supera proyección</div></div>
     <div class="kpi"><div class="kl">Particulares vs proy.</div><div class="kv neg">−$2.4M</div><div class="ks neg">▼ Bajo proyección</div></div>
@@ -209,10 +209,10 @@ tfoot td{padding:9px 10px;font-size:12px;font-weight:600;border-top:.5px solid v
     <div class="tw"><table>
       <thead><tr><th>Línea</th><th>Área</th><th>Venta acum.</th><th>% del total</th></tr></thead>
       <tbody>
-        <tr><td>Instituciones HC Stgo.</td><td><span class="chip ci">Instituciones</span></td><td>$308.4M</td><td>31.4%</td></tr>
+        <tr><td>Home Care B2B</td><td><span class="chip ci">Instituciones</span></td><td>$308.4M</td><td>31.4%</td></tr>
         <tr><td>Institucional Res.</td><td><span class="chip cr">Residencia</span></td><td>$255.4M</td><td>26.0%</td></tr>
-        <tr><td>Laboratorio Stgo.</td><td><span class="chip cl">Laboratorio</span></td><td>$238.1M</td><td>24.2%</td></tr>
-        <tr><td>Instituciones HC Viña</td><td><span class="chip ci">Instituciones</span></td><td>$56.5M</td><td>5.8%</td></tr>
+        <tr><td>PSP</td><td><span class="chip cl">PSP</span></td><td>$238.1M</td><td>24.2%</td></tr>
+        <tr><td>Home Care B2B</td><td><span class="chip ci">Instituciones</span></td><td>$56.5M</td><td>5.8%</td></tr>
         <tr><td>Particulares Stgo.</td><td><span class="chip cp">Particulares</span></td><td>$54.0M</td><td>5.5%</td></tr>
         <tr><td>Particular Res.</td><td><span class="chip cr">Residencia</span></td><td>$52.4M</td><td>5.3%</td></tr>
         <tr><td>Instituciones Stgo.</td><td><span class="chip ci">Instituciones</span></td><td>$10.1M</td><td>1.0%</td></tr>
@@ -237,7 +237,7 @@ tfoot td{padding:9px 10px;font-size:12px;font-weight:600;border-top:.5px solid v
     <div class="leg"><div class="li"><span class="lb" style="background:#185FA5"></span>Enero</div><div class="li"><span class="lb" style="background:#5DCAA5"></span>Febrero</div></div>
   </div>
   <div class="card">
-    <div class="ct">Detalle por cliente · Instituciones</div>
+    <div class="ct">Detalle por cliente · Home Care B2B</div>
     <div class="tw"><table>
       <thead><tr><th>#</th><th>Cliente</th><th>Venta Enero</th><th>Venta Feb.</th><th>Acumulado</th><th>Proyección</th><th>Dif. vs Proy.</th><th>% Área</th></tr></thead>
       <tbody>
@@ -247,13 +247,13 @@ tfoot td{padding:9px 10px;font-size:12px;font-weight:600;border-top:.5px solid v
         <tr><td><span class="rank">4</span></td><td>Serv. Aux. PFIZER DE CHILE</td><td>$4.0M</td><td>$4.0M</td><td><strong>$8.0M</strong></td><td>$8.0M</td><td class="pos">+$0.0M</td><td>2.1%</td></tr>
         <tr><td><span class="rank">5</span></td><td>MEGASALUD</td><td>$1.0M</td><td>$1.0M</td><td><strong>$2.1M</strong></td><td>$0.0M</td><td class="pos">+$2.1M</td><td>0.5%</td></tr>
       </tbody>
-      <tfoot><tr><td colspan="4">Total Instituciones</td><td><strong>$374.9M</strong></td><td>$360.5M</td><td class="pos">+$14.4M</td><td>100%</td></tr></tfoot>
+      <tfoot><tr><td colspan="4">Total Home Care B2B</td><td><strong>$374.9M</strong></td><td>$360.5M</td><td class="pos">+$14.4M</td><td>100%</td></tr></tfoot>
     </table></div>
   </div>
 </div>
  
 <!-- LABORATORIO -->
-<div class="sec" id="s-laboratorio">
+<div class="sec" id="s-psp">
   <div class="kgrid">
     <div class="kpi"><div class="kl">Venta acumulada</div><div class="kv">$238.1M</div><div class="ks">Ene + Feb 2026</div></div>
     <div class="kpi"><div class="kl">Proyección acum.</div><div class="kv">$193.7M</div><div class="ks pos">▲ Superada +$44.4M</div></div>
@@ -266,7 +266,7 @@ tfoot td{padding:9px 10px;font-size:12px;font-weight:600;border-top:.5px solid v
     <div class="leg"><div class="li"><span class="lb" style="background:#854F0B"></span>Enero</div><div class="li"><span class="lb" style="background:#FAC775"></span>Febrero</div></div>
   </div>
   <div class="card">
-    <div class="ct">Detalle por cliente · Laboratorio</div>
+    <div class="ct">Detalle por cliente · PSP</div>
     <div class="tw"><table>
       <thead><tr><th>#</th><th>Cliente</th><th>Venta Enero</th><th>Venta Feb.</th><th>Acumulado</th><th>Proyección</th><th>Dif. vs Proy.</th><th>% Área</th></tr></thead>
       <tbody>
@@ -282,7 +282,7 @@ tfoot td{padding:9px 10px;font-size:12px;font-weight:600;border-top:.5px solid v
         <tr><td><span class="rank">10</span></td><td>MCA</td><td>$0.3M</td><td>$0.4M</td><td><strong>$0.7M</strong></td><td>$0.0M</td><td class="pos">+$0.7M</td><td>0.3%</td></tr>
         <tr><td><span class="rank">11</span></td><td>GENETICS</td><td>$0.0M</td><td>$0.5M</td><td><strong>$0.5M</strong></td><td>$0.0M</td><td class="pos">+$0.5M</td><td>0.2%</td></tr>
       </tbody>
-      <tfoot><tr><td colspan="4">Total Laboratorio</td><td><strong>$238.1M</strong></td><td>$193.7M</td><td class="pos">+$44.4M</td><td>100%</td></tr></tfoot>
+      <tfoot><tr><td colspan="4">Total PSP</td><td><strong>$238.1M</strong></td><td>$193.7M</td><td class="pos">+$44.4M</td><td>100%</td></tr></tfoot>
     </table></div>
   </div>
 </div>
@@ -320,7 +320,7 @@ tfoot td{padding:9px 10px;font-size:12px;font-weight:600;border-top:.5px solid v
 <div class="footer">Dashboard Ventas 2026 · Fuente: Base_Ventas_2026.xlsx · Generado abril 2026</div>
  
 <script>
-const VIEWS=['resumen','mensual','clientes','detalle','instituciones','laboratorio','residencia'];
+const VIEWS=['resumen','mensual','clientes','detalle','instituciones','psp','residencia'];
 const charts={};
  
 function sv(v){
@@ -344,24 +344,24 @@ function mk(id,cfg){
  
 function buildCharts(v){
   if(v==='resumen'){
-    mk('cDonut',{type:'doughnut',data:{labels:['Instituciones','Laboratorio','Residencia','Particulares'],datasets:[{data:[374.9,238.1,307.8,61.6],backgroundColor:['#185FA5','#854F0B','#534AB7','#3B6D11'],borderWidth:3,borderColor:'transparent',hoverOffset:4}]},options:{responsive:true,maintainAspectRatio:false,cutout:'66%',plugins:{...nl,tooltip:tt()}}});
-    mk('cComp',{type:'bar',data:{labels:['Instituciones','Laboratorio','Residencia','Particulares'],datasets:[{label:'Proyectado',data:[360.5,193.7,259.0,64.0],backgroundColor:'#B5D4F4',borderRadius:4},{label:'Vendido',data:[374.9,238.1,307.8,61.6],backgroundColor:['#185FA5','#854F0B','#534AB7','#3B6D11'],borderRadius:4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{...nl,tooltip:tt()},scales:{x:{grid:{display:false},ticks:{font:{size:10}}},y:{grid:{color:gc},ticks:ty}}}});
-    mk('cLine',{type:'line',data:{labels:['Enero','Febrero'],datasets:[{label:'Instituciones',data:[197.7,177.3],borderColor:'#185FA5',tension:.4,pointRadius:6,borderWidth:2,fill:false},{label:'Laboratorio',data:[113.8,124.3],borderColor:'#854F0B',tension:.4,pointRadius:6,borderWidth:2,fill:false},{label:'Residencia',data:[155.5,152.4],borderColor:'#534AB7',tension:.4,pointRadius:6,borderWidth:2,fill:false},{label:'Particulares',data:[33.0,28.5],borderColor:'#3B6D11',tension:.4,pointRadius:6,borderWidth:2,fill:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{...nl,tooltip:tt()},scales:{x:{grid:{display:false}},y:{grid:{color:gc},ticks:ty}}}});
+    mk('cDonut',{type:'doughnut',data:{labels:['Instituciones','PSP','Residencia','Particulares'],datasets:[{data:[374.9,238.1,307.8,61.6],backgroundColor:['#185FA5','#854F0B','#534AB7','#3B6D11'],borderWidth:3,borderColor:'transparent',hoverOffset:4}]},options:{responsive:true,maintainAspectRatio:false,cutout:'66%',plugins:{...nl,tooltip:tt()}}});
+    mk('cComp',{type:'bar',data:{labels:['Instituciones','PSP','Residencia','Particulares'],datasets:[{label:'Proyectado',data:[360.5,193.7,259.0,64.0],backgroundColor:'#B5D4F4',borderRadius:4},{label:'Vendido',data:[374.9,238.1,307.8,61.6],backgroundColor:['#185FA5','#854F0B','#534AB7','#3B6D11'],borderRadius:4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{...nl,tooltip:tt()},scales:{x:{grid:{display:false},ticks:{font:{size:10}}},y:{grid:{color:gc},ticks:ty}}}});
+    mk('cLine',{type:'line',data:{labels:['Enero','Febrero'],datasets:[{label:'Instituciones',data:[197.7,177.3],borderColor:'#185FA5',tension:.4,pointRadius:6,borderWidth:2,fill:false},{label:'PSP',data:[113.8,124.3],borderColor:'#854F0B',tension:.4,pointRadius:6,borderWidth:2,fill:false},{label:'Residencia',data:[155.5,152.4],borderColor:'#534AB7',tension:.4,pointRadius:6,borderWidth:2,fill:false},{label:'Particulares',data:[33.0,28.5],borderColor:'#3B6D11',tension:.4,pointRadius:6,borderWidth:2,fill:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{...nl,tooltip:tt()},scales:{x:{grid:{display:false}},y:{grid:{color:gc},ticks:ty}}}});
   }
   if(v==='mensual'){
-    mk('cMensual',{type:'bar',data:{labels:['Instituciones','Laboratorio','Residencia','Particulares'],datasets:[{label:'Enero',data:[197.7,113.8,155.5,33.0],backgroundColor:'#185FA5',borderRadius:4},{label:'Febrero',data:[177.3,124.3,152.4,28.5],backgroundColor:'#1D9E75',borderRadius:4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{...nl,tooltip:tt()},scales:{x:{grid:{display:false},ticks:{font:{size:10}}},y:{grid:{color:gc},ticks:ty}}}});
+    mk('cMensual',{type:'bar',data:{labels:['Instituciones','PSP','Residencia','Particulares'],datasets:[{label:'Enero',data:[197.7,113.8,155.5,33.0],backgroundColor:'#185FA5',borderRadius:4},{label:'Febrero',data:[177.3,124.3,152.4,28.5],backgroundColor:'#1D9E75',borderRadius:4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{...nl,tooltip:tt()},scales:{x:{grid:{display:false},ticks:{font:{size:10}}},y:{grid:{color:gc},ticks:ty}}}});
   }
   if(v==='clientes'){
     mk('cTopCli',{type:'bar',data:{labels:['MUTUAL\nStgo.','Hosp.\nSótero','ESACHS','SANOFI','Hosp.\nSan Juan','PFIZER','Viña\nMUTUAL','Servicios\n(Part.)','Residencia\n(Part.)','PTC'],datasets:[{label:'Venta acum.',data:[189.8,129.5,118.5,99.1,95.0,61.5,56.5,54.0,52.4,34.4],backgroundColor:['#185FA5','#534AB7','#185FA5','#854F0B','#534AB7','#854F0B','#185FA5','#3B6D11','#534AB7','#854F0B'],borderRadius:4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{...nl,tooltip:tt('Venta')},scales:{x:{grid:{display:false},ticks:{font:{size:9}}},y:{grid:{color:gc},ticks:ty}}}});
   }
   if(v==='detalle'){
-    mk('cLinea',{type:'bar',data:{labels:['Inst. HC\nStgo.','Inst.\nRes.','Lab.\nStgo.','Inst. HC\nViña','Part.\nStgo.','Part.\nRes.','Inst.\nStgo.','Part.\nViña'],datasets:[{label:'Venta',data:[308.4,255.4,238.1,56.5,54.0,52.4,10.1,7.6],backgroundColor:['#185FA5','#534AB7','#854F0B','#185FA5','#3B6D11','#534AB7','#185FA5','#3B6D11'],borderRadius:4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{...nl,tooltip:tt('Venta')},scales:{x:{grid:{display:false},ticks:{font:{size:9}}},y:{grid:{color:gc},ticks:ty}}}});
-    mk('cDetalle',{type:'bar',data:{labels:['Instituciones','Laboratorio','Residencia','Particulares'],datasets:[{label:'Proyectado',data:[360.5,193.7,259.0,64.0],backgroundColor:'#B5D4F4',borderRadius:4},{label:'Vendido',data:[374.9,238.1,307.8,61.6],backgroundColor:'#1D9E75',borderRadius:4},{label:'Facturado',data:[512.0,229.5,429.3,61.6],backgroundColor:'#D85A30',borderRadius:4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{...nl,tooltip:tt()},scales:{x:{grid:{display:false},ticks:{font:{size:10}}},y:{grid:{color:gc},ticks:ty}}}});
+    mk('cLinea',{type:'bar',data:{labels:['Home Care B2B\nStgo.','Inst.\nRes.','Lab.\nStgo.','Home Care B2B\nViña','Part.\nStgo.','Part.\nRes.','Inst.\nStgo.','Part.\nViña'],datasets:[{label:'Venta',data:[308.4,255.4,238.1,56.5,54.0,52.4,10.1,7.6],backgroundColor:['#185FA5','#534AB7','#854F0B','#185FA5','#3B6D11','#534AB7','#185FA5','#3B6D11'],borderRadius:4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{...nl,tooltip:tt('Venta')},scales:{x:{grid:{display:false},ticks:{font:{size:9}}},y:{grid:{color:gc},ticks:ty}}}});
+    mk('cDetalle',{type:'bar',data:{labels:['Instituciones','PSP','Residencia','Particulares'],datasets:[{label:'Proyectado',data:[360.5,193.7,259.0,64.0],backgroundColor:'#B5D4F4',borderRadius:4},{label:'Vendido',data:[374.9,238.1,307.8,61.6],backgroundColor:'#1D9E75',borderRadius:4},{label:'Facturado',data:[512.0,229.5,429.3,61.6],backgroundColor:'#D85A30',borderRadius:4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{...nl,tooltip:tt()},scales:{x:{grid:{display:false},ticks:{font:{size:10}}},y:{grid:{color:gc},ticks:ty}}}});
   }
   if(v==='instituciones'){
     mk('cInstBar',{type:'bar',data:{labels:['MUTUAL\n(Stgo. y Rancagua)','ESACHS','Viña MUTUAL','Serv. Aux.\nPFIZER','MEGASALUD'],datasets:[{label:'Enero',data:[101.9,60.1,30.6,4.0,1.0],backgroundColor:'#185FA5',borderRadius:4},{label:'Febrero',data:[87.9,58.5,25.9,4.0,1.0],backgroundColor:'#5DCAA5',borderRadius:4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{font:{size:11},boxWidth:12}},tooltip:tt()},scales:{x:{grid:{display:false},ticks:{font:{size:9}}},y:{grid:{color:gc},ticks:ty}}}});
   }
-  if(v==='laboratorio'){
+  if(v==='psp'){
     mk('cLabBar',{type:'bar',data:{labels:['SANOFI','PFIZER\nDE CHILE','PTC','ASTRAZENECA','BIOMARIN','LINDE GAS','COLMENA','MERCK','ASTELLAS','MCA','GENETICS'],datasets:[{label:'Enero',data:[44.7,32.7,18.0,9.8,4.3,2.3,1.8,-0.8,0.7,0.3,0.0],backgroundColor:'#854F0B',borderRadius:4},{label:'Febrero',data:[54.4,28.7,16.4,8.8,7.0,3.7,1.4,2.5,0.7,0.4,0.5],backgroundColor:'#FAC775',borderRadius:4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{font:{size:11},boxWidth:12}},tooltip:tt()},scales:{x:{grid:{display:false},ticks:{font:{size:9}}},y:{grid:{color:gc},ticks:ty}}}});
   }
   if(v==='residencia'){
@@ -375,6 +375,11 @@ function buildCharts(v){
   s.src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js';
   s.onload=function(){ buildCharts('resumen'); };
   document.head.appendChild(s);
+})();
+</script>
+</body>
+</html>
+ 
 })();
 </script>
 </body>

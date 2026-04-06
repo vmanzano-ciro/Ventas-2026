@@ -431,6 +431,7 @@
 
 <div class="footer">Dashboard Ventas 2026 · Generado abril 2026 · Datos: Base_Ventas_2026.xlsx</div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <script>
 const VIEWS = ['resumen','mensual','clientes','detalle'];
 let chartsBuilt = {};
@@ -571,10 +572,17 @@ function buildCharts(v) {
   }
 }
 
-// Build initial view
-chartsBuilt['resumen'] = true;
-buildCharts('resumen');
+// Build initial view after DOM + Chart.js are ready
+function initDashboard() {
+  chartsBuilt['resumen'] = true;
+  buildCharts('resumen');
+}
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initDashboard);
+} else {
+  initDashboard();
+}
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+
 </body>
 </html>
